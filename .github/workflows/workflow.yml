@@ -1,0 +1,17 @@
+name: hexlet-ci-app
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'npm'
+      - name: Setup app
+        run: npm ci
+      - name: Testing
+        run: npm test
+      - name: Linting
+        run: npx eslint .
